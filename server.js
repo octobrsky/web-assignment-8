@@ -25,6 +25,22 @@ app.use(requestLogger);
 app.use(requestCounter);
 app.use(express.static(path.join(__dirname, "public")));
 
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+app.get("/hello", (req, res) => {
+  res.type("text/plain").send("Hello from Zeynep's server!");
+});
+
+app.get("/robots.txt", (req, res) => {
+  res.type("text/plain").send("User-agent: *\nDisallow: /api/admin\n");
+});
+
+app.get("/old-page", (req, res) => {
+  res.redirect("/hello");
+});
+
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
