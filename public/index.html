@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>B.Sc. in Computational Systems — Information Server</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <span class="badge">Fall 2026 Study Programme</span>
+      <h1>Computational Systems &amp; Network Engineering</h1>
+      <p>
+        This undergraduate programme bridges low-level systems architecture, secure network protocols,
+        and modern web engineering. Use the interactive API explorer below to inspect live endpoints
+        served directly by our Express 5 backend.
+      </p>
+    </header>
+    <section class="controls" aria-label="API Endpoints">
+      <h2>API Route Explorer</h2>
+      <div class="button-grid">
+        <button type="button" data-method="GET" data-url="/api/courses">GET /api/courses</button>
+        <button type="button" data-method="GET" data-url="/api/status">GET /api/status</button>
+        <button type="button" data-method="GET" data-url="/api/headers">GET /api/headers</button>
+        <button type="button" data-method="POST" data-url="/api/subscribe">POST /api/subscribe</button>
+        <button type="button" data-method="GET" data-url="/api/admin">GET /api/admin (403)</button>
+        <button type="button" data-method="GET" data-url="/api/stats">GET /api/stats</button>
+        <button type="button" data-method="GET" data-url="/api/missing-route">GET /api/missing (404)</button>
+      </div>
+    </section>
+    <section class="output-panel" aria-live="polite">
+      <div class="output-header">
+        <h2>Server Response</h2>
+        <span id="status-badge" class="status-badge">Ready</span>
+      </div>
+      <pre id="response-body">Click any endpoint button above to send a Fetch request...</pre>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
