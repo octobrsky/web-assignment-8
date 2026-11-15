@@ -2,13 +2,16 @@ const buttons = document.querySelectorAll("button[data-url]");
 const statusBadge = document.getElementById("status-badge");
 const responseBody = document.getElementById("response-body");
 
-async function callEndpoint(method, url) {
+async function callEndpoint(method, url, activeBtn) {
+  buttons.forEach((b) => b.classList.remove("active"));
+  if (activeBtn) activeBtn.classList.add("active");
+
   statusBadge.textContent = "Loading...";
   statusBadge.className = "status-badge";
 
   try {
     const response = await fetch(url, { method });
-    statusBadge.textContent = `${response.status} ${response.statusText}`;
+    statusBadge.textContent = `${response.status}${response.statusText}`;
     statusBadge.className = response.ok ? "status-badge status-ok" : "status-badge status-err";
 
     const contentType = response.headers.get("content-type") || "";
@@ -26,5 +29,5 @@ async function callEndpoint(method, url) {
 }
 
 buttons.forEach((btn) => {
-  btn.addEventListener("click", () => callEndpoint(btn.dataset.method, btn.dataset.url));
+  btn.addEventListener("click", () => callEndpoint(btn.dataset.method, btn.dataset.url, btn));
 });
